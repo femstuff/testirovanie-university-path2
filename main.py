@@ -29,7 +29,7 @@ class GitHubAPITest:
         response = requests.post(url, headers=self.headers, json=data)
         if response.status_code == 201:
             print(f"Репозиторий {self.repo_name} успешно создан")
-            print(response.status_code)
+            print(f"Status code: {response.status_code}")
             time.sleep(15)
             return True
         else:
@@ -42,9 +42,11 @@ class GitHubAPITest:
         response = requests.get(url, headers=self.headers)
         if response.status_code == 200:
             print(f"Репозиторий {self.repo_name} существует")
+            print(f"Status code: {response.status_code}")
             return True
         elif response.status_code == 404:
             print(f"Репозиторий {self.repo_name} не существует")
+            print(f"Status code: {response.status_code}")
             return False
         else:
             print(f"Ошибка при проверке репозитория: {response.json()}")
@@ -56,6 +58,7 @@ class GitHubAPITest:
         response = requests.delete(url, headers=self.headers)
         if response.status_code == 204:
             print(f"Репозиторий {self.repo_name} успешно удален")
+            print(f"Status code: {response.status_code}")
             return True
         else:
             print(f"Ошибка при удалении репозитория: {response.json()}")
